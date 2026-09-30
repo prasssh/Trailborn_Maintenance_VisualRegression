@@ -39,7 +39,7 @@ export default defineConfig({
   },
 
   use: {
-    baseURL: 'https://trailborndev.wpengine.com',
+    baseURL: process.env.BASE_URL || 'https://trailborndev.wpengine.com',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

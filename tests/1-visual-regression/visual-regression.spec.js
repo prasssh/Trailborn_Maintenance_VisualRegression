@@ -29,6 +29,13 @@ test.describe('Visual regression', () => {
 
       await page.goto(pageUnderTest.path, { waitUntil: 'load' });
 
+      //handles sandboxcontinue
+      const sandboxContinue = page.locator('button.pds-button[onclick="cont()"]');
+      await sandboxContinue.waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
+      if (await sandboxContinue.isVisible()) {
+        await sandboxContinue.click();
+      }
+
       // Accept the cookie banner so it doesn't appear in the screenshot
       await acceptCookieBanner(page);
 
