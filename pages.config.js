@@ -1,0 +1,15 @@
+export const pagesUnderTest = [
+  { name: 'home', path: '/', hasLeadspaceVideo: true },
+  { name: 'all-modules-2026', path: '/all-modules-2026/', hasLeadspaceVideo: false },
+  { name: 'eat-drink', path: '/eat-drink/', hasLeadspaceVideo: false },
+  { name: 'faq-content-test', path  : '/faq-content-test/', hasLeadspaceVideo: false },
+  { name: 'careers', path: '/careers/', hasLeadspaceVideo: false },
+  { name: 'faq', path: '/faq/', hasLeadspaceVideo: false },
+  { name: 'press', path: '/press/', hasLeadspaceVideo: false },
+  { name: 'gatherings', path: '/gatherings/', hasLeadspaceVideo: false },
+  { name: 'keep-extraordinary', path: '/keep-extraordinary/', hasLeadspaceVideo: false },
+  { name: 'about', path: '/about/', hasLeadspaceVideo: false },
+  { name: 'terms-of-use', path: '/terms-of-use/', hasLeadspaceVideo: false },
+  { name: 'privacy-policy', path: '/privacy-policy/', hasLeadspaceVideo: false },
+  { name: 'influencer-inquiry', path: '/influencer-inquiry/', hasLeadspaceVideo: false },
+];

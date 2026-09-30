@@ -1,0 +1,21 @@
+{
+  "name": "valorea-maintenance-regression",
+  "version": "1.0.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "private": true,
+  "type": "module",
+  "description": "Visual regression + contact form validation suite for test-valorea.pantheonsite.io — run after plugin updates.",
+  "scripts": {
+    "test": "playwright test",
+    "test:update-baselines": "playwright test --update-snapshots",
+    "test:headed": "playwright test --headed",
+    "test:happy-path": "RUN_HAPPY_PATH=1 playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.2",
+    "dotenv": "16.4.5"
+  }
+}
