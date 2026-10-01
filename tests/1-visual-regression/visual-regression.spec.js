@@ -16,14 +16,24 @@ async function acceptCookieBanner(page) {
   }
 }
 
+/**
+ * Check if the page has a Vimeo video by looking for the Vimeo container
+ * or iframe. This is more reliable than relying on a static config flag.
+ */
+async function hasVimeoVideo(page) {
+  const vimeoContainer = page.locator('.js-vimeo-video-container, iframe[id^="vimeo-player"], iframe[src*="vimeo.com"]');
+  return (await vimeoContainer.count()) > 0;
+}
+
 test.describe('Visual regression', () => {
   for (const pageUnderTest of pagesUnderTest) {
     test(`${pageUnderTest.name} — full page matches baseline`, async ({ page }) => {
+      // Block the Vimeo player entirely on pages that have it —
+      // far more reliable than pausing it after the fact via postMessage,
+      // which is async and can lag on slower CI runners, causing the
+      // screenshot's "wait for stable frame" check to time out.
+      // We check both the config flag and the actual page content.
       if (pageUnderTest.hasLeadspaceVideo) {
-        // Block the Vimeo player entirely so it never loads/animates —
-        // far more reliable than pausing it after the fact via postMessage,
-        // which is async and can lag on slower CI runners, causing the
-        // screenshot's "wait for stable frame" check to time out.
         await page.route('**://player.vimeo.com/**', (route) => route.abort());
       }
 
@@ -39,7 +49,9 @@ test.describe('Visual regression', () => {
       // Accept the cookie banner so it doesn't appear in the screenshot
       await acceptCookieBanner(page);
 
-      if (pageUnderTest.hasLeadspaceVideo) {
+      // Check for Vimeo videos on the actual page content (not just config)
+      const pageHasVimeo = await hasVimeoVideo(page);
+      if (pageHasVimeo) {
         await pauseBackgroundVideo(page);
       }
 

@@ -16,9 +16,16 @@
 export async function getFlakyElements(page) {
   const masks = [];
 
+  // Check for Vimeo video containers (both the wrapper and the iframe)
   const videoContainer = page.locator('.js-vimeo-video-container');
   if (await videoContainer.count()) {
     masks.push(videoContainer);
+  }
+
+  // Also check for Vimeo iframes directly (in case the container class changes)
+  const vimeoIframe = page.locator('iframe[id^="vimeo-player"], iframe[src*="vimeo.com"]');
+  if (await vimeoIframe.count()) {
+    masks.push(vimeoIframe);
   }
 
   return masks;
