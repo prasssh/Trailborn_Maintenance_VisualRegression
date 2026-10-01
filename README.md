@@ -1,6 +1,6 @@
 # Valorea — Maintenance Regression Suite (ESM)
 
-Playwright suite for `test-valorea.pantheonsite.io`, meant to be run after a
+Playwright suite for `https://www.trailborn.com`, meant to be run after a
 plugin update to confirm nothing on these pages broke:
 
 - `/` (home — includes the Vimeo leadspace video)
@@ -10,12 +10,6 @@ It covers two things:
 
 1. **Visual regression** — full-page screenshot diff for each page, on
    desktop (1440×900) and mobile (iPhone 15 Pro, forced to Chromium).
-2. **Contact form validation** — empty-submit and invalid-email error states
-   on the footer contact form (Contact Form 7), plus an optional
-   full-submission happy path.
-
-The default test order is `1-visual-regression.spec.js` then
-`2-contact-form.spec.js`.
 
 It does **not** re-test the pages' functional correctness (that's assumed
 correct already) — it's purely a "did the last plugin update change
@@ -35,11 +29,6 @@ npx playwright install           # macOS / Windows
 npx playwright install --with-deps chromium   # Linux (CI)
 ```
 
-Copy `.env.example` to `.env` and fill in:
-- `WP_ADMIN_USER` / `WP_ADMIN_PASS` — WordPress admin credentials for the
-  staging site (used to temporarily re-point the CF7 recipient).
-- `WP_TEST_RECIPIENT_EMAIL` — throwaway address the form points at while the
-  contact-form suite runs.
 
 ## Create baselines
 
