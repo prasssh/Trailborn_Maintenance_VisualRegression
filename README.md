@@ -1,10 +1,7 @@
 # Valorea — Maintenance Regression Suite (ESM)
 
 Playwright suite for `https://www.trailborn.com`, meant to be run after a
-plugin update to confirm nothing on these pages broke:
-
-- `/` (home — includes the Vimeo leadspace video)
-- `/privacy-policy/`
+plugin update to confirm nothing on the pages broke.
 
 It covers two things:
 
